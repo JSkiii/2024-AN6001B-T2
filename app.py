@@ -19,8 +19,9 @@ def SA():
 
 @app.route("/SA_result",methods=["GET","POST"])
 def SA_result():
-    name = request.form.get("q")
-    return(render_template("SA_result.html"))
+    q = request.form.get("q")
+    r = textblob.TextBlob(q).sentiment
+    return(render_template("SA_result.html",r=r))
 
 if __name__ == "__main__":
     app.run()
